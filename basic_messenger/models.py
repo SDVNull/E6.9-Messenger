@@ -8,12 +8,16 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to="avatars/", null=True, blank=True)
 
 
-class GroupChat(models.Model):
-    name = models.CharField(max_length=100)
-    creator = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
-class Message(models.Model):
+class GroupMessages(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    group_chat = models.ForeignKey(GroupChat, on_delete=models.CASCADE)
-    content = models.TextField()
+    created_time = models.DateTimeField(auto_now_add=True)
+    change_time = models.DateTimeField(null=True, blank=True)
+    text = models.TextField()
+
+
+class PrivateMessages(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_time = models.DateTimeField(auto_now_add=True)
+    change_time = models.DateTimeField(null=True, blank=True)
+    text = models.TextField()
