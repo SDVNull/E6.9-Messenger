@@ -1,17 +1,22 @@
 from rest_framework import serializers
-from .models import UserProfile, GroupMessages, PrivateMessages
+from .models import *
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ['id', 'user', 'name', 'avatar']
+        fields = ['name', 'avatar']
+
+class GroupChatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GroupChat
+        fields = '__all__'
 
 class GroupMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = GroupMessages
-        fields = ['id', 'name', 'created_time', 'change_time', 'text']
+        fields = '__all__'
 
-class MPrivateMessageSerializer(serializers.ModelSerializer):
+class PrivateMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PrivateMessages
-        fields = ['id', 'sender', 'recipient', 'created_time', 'change_time', 'text']
+        fields = '__all__'
