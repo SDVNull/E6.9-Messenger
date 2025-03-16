@@ -1,12 +1,19 @@
 from rest_framework.routers import DefaultRouter
 from django.urls import path, include
-
 from basic_messenger.views import GroupChatViewSet, UserProfileViewSet
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 router = DefaultRouter()
-router.register(r'profile', UserProfileViewSet)
-router.register(r'group_chats', GroupChatViewSet)
+router.register(r"profile", UserProfileViewSet)
+router.register(r"group_chats", GroupChatViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", include(router.urls)),
+    # url для токенов доступа (access) и обновления (refresh)
+    # время жизни токенов 1 час и 7 дней соответвенно (указано в settings.py)
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ]
