@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Редактирование профиля</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Редактирование профиля</h2>
+      <div id="error" class="error"></div>
+      <form id="profileForm">
+        <input type="text" id="name" placeholder="Имя" required />
+        <input type="file" id="avatar" accept="image/*" />
+        <button type="submit">Сохранить</button>
+      </form>
+      <p></p>
+    </div>
+    <script src="/static/edit.js"></script>
+  </body>
+</html>
